@@ -1,23 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import HomePage from './components/HomePage';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import BookList from './components/BooksList';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <BrowserRouter>
+        <div>
+          <NavLink style={{ marginRight: 10 }} to="/">Home</NavLink>
+          <NavLink style={{ marginLeft: 10 }} to="/Book">Book</NavLink>
+        </div>
+        <Routes>
+          <Route path='/' element={<HomePage />}></Route>
+          <Route path='/Book' element={<BookList />}></Route>
+          <Route path='/*' element={<PageNotFound />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
